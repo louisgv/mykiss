@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"./data"
@@ -9,6 +10,8 @@ import (
 func main() {
 	datasetCSVFile, _ := os.Open("./sample.csv")
 	for record := range data.ScanCSV(datasetCSVFile) {
-		// fmt.Println(record)
+		fmt.Println(record[0])
+		//
+		fmt.Println(record[1])
 	}
 }
