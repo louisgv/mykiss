@@ -7,31 +7,33 @@
 
 namespace cpp_example_project {
 namespace business_logic {
-
 /**
  * @brief      Very simple business logic class,
  *             which needs to work with DataStorage.
  */
 class TemperatureMonitor {
- public:
-    // Default ctor - intializes a data provider itself
-    TemperatureMonitor();
-    // More generic ctor - gets a data provider
-    explicit TemperatureMonitor(
-        const std::shared_ptr<data_providers::DataStorage>& storage);
+public:
 
-    void delete_all_stored_temperatures();
+  // Default ctor - intializes a data provider itself
+  TemperatureMonitor();
 
-    void store_new_temperature(int temperature, bool fahrenheit = false);
+  // More generic ctor - gets a data provider
+  explicit TemperatureMonitor(
+    const std::shared_ptr<data_providers::DataStorage>& storage);
 
-    std::vector<int> get_all_saved_temperatures(bool in_fahrenheits = false);
+  void            delete_all_stored_temperatures();
 
- private:
-    static int get_celsius_from_fahrenheit(int fahrenheit);
-    static int get_fahrenheit_from_celius(int celsius);
+  void            store_new_temperature(int  temperature,
+                                        bool fahrenheit = false);
 
-    std::shared_ptr<data_providers::DataStorage> storage_;
+  std::vector<int>get_all_saved_temperatures(bool in_fahrenheits = false);
+
+private:
+
+  static int get_celsius_from_fahrenheit(int fahrenheit);
+  static int get_fahrenheit_from_celius(int celsius);
+
+  std::shared_ptr<data_providers::DataStorage>storage_;
 };
-
-}  // namespace business_logic
-}  // namespace cpp_example_project
+} // namespace business_logic
+} // namespace cpp_example_project

@@ -23,6 +23,7 @@ Mykiss requires:
 3. Setup:
 
 ```sh
+chmod +x verify_cpp_code.sh
 cmake .
 make
 make tests
@@ -52,6 +53,10 @@ cmake --build .
 1. Find the git repo link, note its, e.g `helloworld`
 
 2. Do `git submodule add git@github.com:user/helloworld.git 3rdparty/helloworld`
+
+3. If the third party is a small library and its include path is in the root, then you are done. Else, add the include path to `.clang_complete`, using the same syntax.
+
+4.  
 
 ---
 

@@ -1,7 +1,14 @@
 # CMake build script for C++ Basic Project Setup Example
 cmake_minimum_required(VERSION 3.0.2)
 
-project(cpp_basic_project_setup)
+project(Mykiss)
+
+set(EXECUTABLE_NAME "Mykiss")
+
+#include sources
+set(SOURCES
+	src/main.cxx
+)
 
 # Enable more warnings
 set(CXX_EXTRA_FLAGS "-Wall -Wextra -pedantic -Woverloaded-virtual \
@@ -36,10 +43,13 @@ add_subdirectory(
   ./3rdparty/googletest ${CMAKE_CURRENT_BINARY_DIR}/googletest EXCLUDE_FROM_ALL
 )
 
-# Include necessary directories
-include_directories(${gtest_SOURCE_DIR}/include)
-include_directories(${gmock_SOURCE_DIR}/include)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+# Include necessary directories
+include_directories(./3rdparty)
+
+include_directories(${gmock_SOURCE_DIR}/include)
+
 include_directories(src)
 
 # Treat warnings as errors in our own code
@@ -47,10 +57,17 @@ add_compile_options(-Werror)
 
 # Build our library
 add_library(business_logic
-  src/business_logic/temperature_monitor.cpp
+	src/business_logic/temperature_monitor.cpp
   src/data_providers/unimplemented_network_storage.cpp
 )
 
+# Build Executable
+add_executable(${EXECUTABLE_NAME}
+	${SOURCES}
+	# ${HEADERS}
+)
+
+# Build unit test:
 SET(TESTS_EXEC "unit_tests")
 
 # Unit tests for our business_logic library
@@ -58,6 +75,7 @@ add_executable(${TESTS_EXEC} EXCLUDE_FROM_ALL
   test/mocks.cpp
   test/temperature_monitor_test.cpp
 )
+
 # Standard linking to gtest & gmock stuff and our own library
 target_link_libraries(${TESTS_EXEC} business_logic gtest gmock gmock_main)
 

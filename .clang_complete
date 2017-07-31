@@ -1,0 +1,6 @@
+-I./src/
+-I./test/
+
+-I./3rdparty/
+-I./3rdparty/googletest/googlemock/include/
+-I./3rdparty/googletest/googletest/include/
