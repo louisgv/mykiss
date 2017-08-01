@@ -24,24 +24,13 @@ Mykiss requires:
 
 ```sh
 chmod +x verify_cpp_code.sh
-cmake .
-make
-make tests
-```
-
-4. Build:
-
-```sh
-# (linux, mac)
-cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
-cmake --build .
+chmod +x start.sh
 ```
 
 4. Run:
 
 ```sh
-# Inside ./build
-./build/bin
+./start.sh
 ```
 
 ---
