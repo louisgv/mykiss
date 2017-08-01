@@ -51,13 +51,16 @@ int main(int argc, char *argv[])
       << std::endl;
   }
 
-  std::cout << sum << std::endl;
-  auto finish = std::chrono::high_resolution_clock::now();
+	std::cout << sum << std::endl;
+	auto finish = std::chrono::high_resolution_clock::now();
 
-  std::cout <<
-  (std::chrono::duration_cast<std::chrono::microseconds>(finish -
-                                                         start).count()) <<
-  " us\n";
+	double timeDelta = std::chrono::duration_cast<std::chrono::microseconds>
+	(finish - start).count();
+
+  std::cout
+		<< timeDelta
+		<< " us"
+		<< std::endl;
 
   return 0;
 }
