@@ -39,33 +39,33 @@ set(CMAKE_CURRENT_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/build)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR}/lib)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
-add_subdirectory(
-  ./3rdparty/googletest ${CMAKE_CURRENT_BINARY_DIR}/googletest EXCLUDE_FROM_ALL
-)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
 # Include necessary directories
-include_directories(./3rdparty)
+
+# Treat warnings as errors in our own code
+# add_compile_options(-Werror)
+add_compile_options(-Wno-error)
+
+add_subdirectory(
+	./3rdparty/googletest ${CMAKE_CURRENT_BINARY_DIR}/googletest EXCLUDE_FROM_ALL
+)
 
 include_directories(${gmock_SOURCE_DIR}/include)
 
+include_directories(3rdparty)
+
 include_directories(src)
-
-# Treat warnings as errors in our own code
-add_compile_options(-Werror)
-
-# Build our library
-add_library(business_logic
-	src/business_logic/temperature_monitor.cpp
-  src/data_providers/unimplemented_network_storage.cpp
-)
 
 # Build Executable
 add_executable(${EXECUTABLE_NAME}
 	${SOURCES}
 	# ${HEADERS}
 )
+
+# set_directory_properties(
+#   INCLUDE_DIRECTORIES 3rdparty
+#   PROPERTIES COMPILE_FLAGS -Wno-err
+# )
 
 # Build unit test:
 SET(TESTS_EXEC "unit_tests")
