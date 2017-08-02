@@ -1,9 +1,9 @@
 # CMake build script for C++ Basic Project Setup Example
 cmake_minimum_required(VERSION 3.0.2)
 
-project(Mykiss)
+project(MykissFilter)
 
-set(EXECUTABLE_NAME "Mykiss")
+set(EXECUTABLE_NAME "filter")
 
 #include sources
 set(SOURCES
@@ -47,12 +47,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 add_compile_options(-Wno-error)
 
 add_subdirectory(
-	./3rdparty/googletest ${CMAKE_CURRENT_BINARY_DIR}/googletest EXCLUDE_FROM_ALL
+	../3rdparty/googletest ${CMAKE_CURRENT_BINARY_DIR}/googletest EXCLUDE_FROM_ALL
 )
 
 include_directories(${gmock_SOURCE_DIR}/include)
 
-include_directories(3rdparty)
+include_directories(../3rdparty)
 
 include_directories(src)
 
@@ -80,7 +80,7 @@ add_executable(${TESTS_EXEC} EXCLUDE_FROM_ALL
 target_link_libraries(${TESTS_EXEC} business_logic gtest gmock gmock_main)
 
 # Target for code analysis
-add_custom_target(lint ${CMAKE_CURRENT_SOURCE_DIR}/verify_cpp_code.sh)
+# add_custom_target(lint ${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_cpp_code.sh)
 
 # Target for running unit tests and code style analysis
 add_custom_target(tests

@@ -4,11 +4,22 @@ Since we can do a mono-repo project hierarchy, it is best to have the runnable b
 
 To achieve this, we can study the structure of our current project. If we put everything escape 3rdparty, dotfiles, config files, we can technically invoke the binary build per each process separately. The reason we do so is to avoid overwhelming the 2nd process. We only need to download the image once.
 
+Following googletest structure, we should have all module/process on a flat root directory structure. The only drawback is that we will need to include them manually into our `.clang_complete` whenever a new module is created, similar to our 3rdparty.
+
+We decided to move all shell script into the scripts directory. This will make the path somewhat ugly and confusing, but it will make the project structure a bit more sane. Also this follows the convention from googletest
+
+The structure works. With this, each module will output its separated binary in build/bin. Whereas when needed they all consume binary library. We don't have to plague each with its own CMakeFiles.
+
+We decided to remove linting target. It is fairly useless when you can already configure your editor to lint the code. Furthermore, clang_complete does a fair job with uncrustify to beautify the code.
+
 # What is the total size of all the image in the data set?
 
 We can calculate this using the first process.
 
 
+# Do we need unit test?
+
+... well if someone pay us, sure! Are we gonna do it?... well when we need it.
 
 # Processes needed for Mykiss
 

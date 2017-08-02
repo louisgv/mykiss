@@ -1,5 +1,4 @@
--I./src/
--I./test/
+-I./filter/
 
 -I./3rdparty/
 -I./3rdparty/googletest/googlemock/include/
