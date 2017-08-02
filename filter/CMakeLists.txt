@@ -5,9 +5,15 @@ project(MykissFilter)
 
 set(EXECUTABLE_NAME "filter")
 
-#include sources
+# include sources
 set(SOURCES
 	src/main.cxx
+)
+
+# source for unit test
+SET(TEST_SOURCES
+	test/mocks.cpp
+  test/temperature_monitor_test.cpp
 )
 
 # Enable more warnings
@@ -72,8 +78,7 @@ SET(TESTS_EXEC "unit_tests")
 
 # Unit tests for our business_logic library
 add_executable(${TESTS_EXEC} EXCLUDE_FROM_ALL
-  test/mocks.cpp
-  test/temperature_monitor_test.cpp
+	${TEST_SOURCES}
 )
 
 # Standard linking to gtest & gmock stuff and our own library
