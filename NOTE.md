@@ -16,6 +16,13 @@ We decided to remove linting target. It is fairly useless when you can already c
 
 We can calculate this using the first process.
 
+Here are insight into the meta data:
+
+```
+790339 images
+6.8e+06 MB ~ 7TB of images
+4.1e+04 ms ~ 40000ms / 40s
+```
 
 # Do we need unit test?
 
